@@ -654,8 +654,9 @@ def create_hooks_handlers() -> dict[str, Any]:
         SecurityEnforcementEngine,
     )
 
+    # The pattern library ships with Jerry; installed as a plugin, project_root is the user's project.
     pattern_library = PatternLibraryAdapter(
-        patterns_path=project_root / "scripts" / "patterns" / "patterns.yaml"
+        patterns_path=Path(__file__).resolve().parent.parent / "scripts" / "patterns" / "patterns.yaml"
     )
     security_engine = SecurityEnforcementEngine(
         pattern_library=pattern_library,

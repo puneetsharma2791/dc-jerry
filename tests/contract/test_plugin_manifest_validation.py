@@ -462,7 +462,7 @@ class TestActualMarketplaceManifest:
         plugins = marketplace_data.get("plugins", [])
         assert len(plugins) > 0, "marketplace.json has no plugins"
 
-        jerry_plugin = next((p for p in plugins if p.get("name") == "jerry"), None)
+        jerry_plugin = next((p for p in plugins if p.get("name") == "dc-jerry"), None)
 
         # Assert
         assert jerry_plugin is not None, "jerry plugin not found"

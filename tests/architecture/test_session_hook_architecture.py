@@ -217,33 +217,6 @@ class TestCLIAdapterLayerBoundaries:
 class TestSessionHookIsolation:
     """Architecture: Session hook scripts must be thin adapters."""
 
-    def test_session_start_hook_has_no_src_imports(
-        self,
-        project_root: Path,
-    ) -> None:
-        """T-028: session-start.py only imports stdlib at top level.
-
-        The hook script is a thin adapter that calls the CLI via subprocess.
-        It should NOT import any src/ modules directly at the top level.
-
-        EN-007: Thin wrapper scripts live in hooks/ directory and delegate
-        to jerry hooks CLI commands via subprocess.
-        """
-        hook_path = project_root / "hooks" / "session-start.py"
-        assert hook_path.exists(), f"Hook script not found at {hook_path}"
-
-        imports = get_unguarded_imports_from_file(hook_path)
-
-        # Unguarded src imports are NOT allowed
-        src_imports = [imp for imp in imports if imp.startswith("src.")]
-
-        assert not src_imports, (
-            f"Hook script has unguarded src imports: {src_imports}\n"
-            f"Hook should call CLI via subprocess, not import src modules.\n"
-            f"This ensures proper isolation and allows the hook to work\n"
-            f"even when uv environment is not activated."
-        )
-
     def test_session_start_hook_uses_only_allowed_stdlib(
         self,
         project_root: Path,

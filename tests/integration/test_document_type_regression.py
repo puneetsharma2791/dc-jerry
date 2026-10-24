@@ -57,6 +57,8 @@ EXPECTED_UNKNOWN: frozenset[str] = frozenset(
         "SOUNDTRACK.md",
         # Changelog -- standard repo file, not a Jerry document type.
         "CHANGELOG.md",
+        # Licence notice of what this fork changed -- not a Jerry document type.
+        "UPSTREAM.md",
     }
 )
 

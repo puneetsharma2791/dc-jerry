@@ -11,7 +11,7 @@ activation-keywords:
   - "update the work-tracker"
   - "update the worktracker"
   - "/worktracker"
-  - "/jerry:worktracker"
+  - "/dc-jerry:worktracker"
 
 ---
 

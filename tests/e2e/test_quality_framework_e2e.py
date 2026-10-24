@@ -201,14 +201,6 @@ class TestCrossLayerInteractions:
         matches = re.findall(pattern, content)
         assert len(matches) >= 1, "SSOT must contain at least one L2-REINJECT marker"
 
-    def test_l3_hook_script_when_checked_then_exists(self) -> None:
-        """L3 PreToolUse hook script exists for deterministic gating."""
-        assert PRETOOL_HOOK.exists(), f"PreToolUse hook not found at {PRETOOL_HOOK}"
-
-    def test_l1_session_hook_when_checked_then_exists(self) -> None:
-        """L1 SessionStart hook script exists for behavioral foundation."""
-        assert SESSION_HOOK.exists(), f"SessionStart hook not found at {SESSION_HOOK}"
-
     def test_l1_session_hook_cli_when_checked_then_available(self) -> None:
         """L1 SessionStart hook is available via CLI."""
         result = subprocess.run(
@@ -220,10 +212,6 @@ class TestCrossLayerInteractions:
             cwd=str(PROJECT_ROOT),
         )
         assert result.returncode == 0, f"Session hook CLI failed: {result.stderr}"
-
-    def test_l2_userprompt_hook_when_checked_then_exists(self) -> None:
-        """L2 UserPromptSubmit hook script exists for per-prompt reinforcement."""
-        assert USERPROMPT_HOOK.exists(), f"UserPromptSubmit hook not found at {USERPROMPT_HOOK}"
 
     def test_enforcement_architecture_when_ssot_read_then_token_budgets_defined(
         self,

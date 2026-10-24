@@ -5,7 +5,7 @@ version: "1.1.0"
 allowed-tools: Read, Write, Edit, Bash
 activation-keywords:
   - "/ast"
-  - "/jerry:ast"
+  - "/dc-jerry:ast"
   - "parse markdown"
   - "query frontmatter"
   - "modify frontmatter"
@@ -81,7 +81,7 @@ All operations are invoked via `jerry ast <command>`. In agent context, use the
 `--directory` prefix:
 
 ```bash
-uv run --directory ${CLAUDE_PLUGIN_ROOT} jerry ast <command> [args]
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast <command> [args]
 ```
 
 ### jerry ast parse
@@ -202,37 +202,37 @@ Query AST nodes by type (e.g., heading, blockquote, paragraph).
 ### Read frontmatter from a story file
 
 ```bash
-uv run jerry ast frontmatter projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast frontmatter projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md
 ```
 
 ### Update story status
 
 ```bash
-uv run jerry ast modify projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md --key Status --value in-progress
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast modify projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md --key Status --value in-progress
 ```
 
 ### Validate a rule file for H-23/H-24 compliance
 
 ```bash
-uv run jerry ast validate --nav .context/rules/quality-enforcement.md
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast validate --nav .context/rules/quality-enforcement.md
 ```
 
 ### Extract L2-REINJECT directives from a rule file
 
 ```bash
-uv run jerry ast reinject .context/rules/quality-enforcement.md
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast reinject .context/rules/quality-enforcement.md
 ```
 
 ### Parse a file and inspect its structure
 
 ```bash
-uv run jerry ast parse .context/rules/quality-enforcement.md
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast parse .context/rules/quality-enforcement.md
 ```
 
 ### Validate an entity file against a schema
 
 ```bash
-uv run jerry ast validate --schema story projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md
+uv run --project "${CLAUDE_PLUGIN_ROOT}" jerry ast validate --schema story projects/PROJ-005-markdown-ast/work/EPIC-001-markdown-ast/FEAT-001-ast-strategy/ST-005-ast-skill/ST-005-ast-skill.md
 ```
 
 ---

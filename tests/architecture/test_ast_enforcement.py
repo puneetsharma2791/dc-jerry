@@ -413,16 +413,16 @@ class TestWorktrackerAgentPluginRoot:
     def test_agent_when_checked_then_all_uv_run_prefixed(
         self, wt_agents_dir: Path, agent_file: str
     ) -> None:
-        """All uv run invocations must use --directory ${CLAUDE_PLUGIN_ROOT}."""
+        """All uv run invocations must use --project "${CLAUDE_PLUGIN_ROOT}"."""
         # Arrange
         content = (wt_agents_dir / agent_file).read_text()
         all_uv_run = re.findall(r"uv run\b", content)
-        prefixed_uv_run = re.findall(r"uv run --directory", content)
+        prefixed_uv_run = re.findall(r'uv run --project "\$\{CLAUDE_PLUGIN_ROOT\}"', content)
 
         # Act/Assert
         assert len(all_uv_run) == len(prefixed_uv_run), (
             f"{agent_file}: {len(all_uv_run)} 'uv run' calls but only "
-            f"{len(prefixed_uv_run)} have --directory prefix"
+            f"{len(prefixed_uv_run)} have the --project prefix"
         )
 
 

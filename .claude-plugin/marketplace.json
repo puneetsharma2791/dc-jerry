@@ -1,19 +1,24 @@
 {
-  "name": "jerry-framework",
-  "version": "1.0.0",
-  "description": "Jerry Framework - Claude Code plugin for behavior and workflow guardrails with knowledge accrual",
+  "name": "dc-jerry",
+  "version": "0.1.0",
+  "description": "dc-jerry, a trimmed fork of the Jerry Framework for Claude Code",
   "owner": {
-    "name": "Jerry Framework Contributors",
-    "email": "geekatron@gmail.com"
+    "name": "Puneet Sharma"
   },
   "plugins": [
     {
-      "name": "jerry",
-      "description": "Behavior and workflow guardrails with knowledge accrual for Claude Code. 12 skills and 58 specialized agents covering problem-solving, work tracking, systems engineering, orchestration, adversarial quality review, secure engineering, offensive security, and transcript parsing.",
+      "name": "dc-jerry",
+      "description": "Jerry work tracking, problem-solving, architecture, NASA systems engineering, orchestration and adversarial review for Claude Code, trimmed to seven skills",
       "source": "./",
-      "version": "0.31.9",
+      "version": "0.1.0",
       "category": "productivity",
-      "keywords": ["problem-solving", "work-tracking", "knowledge-management", "agents", "workflows"]
+      "keywords": [
+        "problem-solving",
+        "work-tracking",
+        "knowledge-management",
+        "agents",
+        "workflows"
+      ]
     }
   ]
 }
