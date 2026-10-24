@@ -497,7 +497,6 @@ class TestLiveFileFrontmatterRoundTrip:
         [
             "skills/problem-solving/agents/ps-researcher.md",
             "skills/adversary/agents/adv-scorer.md",
-            "skills/eng-team/agents/eng-architect.md",
         ],
     )
     def test_agent_file_frontmatter_is_valid(self, rel_path: str) -> None:

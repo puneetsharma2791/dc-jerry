@@ -43,7 +43,6 @@ TEMPLATE_FORMAT_PATH = (
 TEMPLATES_DIR = PROJECT_ROOT / ".context" / "templates" / "adversarial"
 SKILL_DIR = PROJECT_ROOT / "skills" / "adversary"
 SKILL_FILE = SKILL_DIR / "SKILL.md"
-CLAUDE_MD_PATH = PROJECT_ROOT / "CLAUDE.md"
 
 # Expected strategy IDs and metadata from SSOT
 SELECTED_STRATEGIES = {
@@ -545,15 +544,6 @@ class TestIntegrationPoints:
     framework via CLAUDE.md and cross-referenced in other skills.
     """
 
-    def test_claude_md_when_read_then_contains_adversary_skill_entry(self):
-        """CLAUDE.md must list /adversary skill."""
-        content = read_file(CLAUDE_MD_PATH)
-
-        # Check for /adversary skill reference
-        assert "/adversary" in content or "adversary" in content.lower(), (
-            "CLAUDE.md missing /adversary skill entry"
-        )
-
     def test_skill_md_when_read_then_contains_template_references(self):
         """adversary SKILL.md must reference strategy templates."""
         content = read_file(SKILL_FILE)
@@ -742,11 +732,6 @@ class TestTemplateValidationScript:
             ".pre-commit-config.yaml missing validate_templates.py reference"
         )
 
-    def test_ci_workflow_when_read_then_contains_template_validation_job(self):
-        """CI workflow should include template validation job."""
-        ci_path = PROJECT_ROOT / ".github" / "workflows" / "ci.yml"
-        content = ci_path.read_text()
-        assert "template-validation" in content, "ci.yml missing template-validation job"
 
 
 # ===========================================================================

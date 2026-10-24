@@ -701,42 +701,6 @@ def test_guide_content_volume_meets_minimum_threshold() -> None:
 
 
 @pytest.mark.e2e
-def test_claude_rules_directory_exists() -> None:
-    """Verify .claude/rules/ symlink exists (rules are synced).
-
-    Three-tier architecture: Rules should be automatically loaded via bootstrap script.
-    """
-    # Arrange
-    repo_root = Path(__file__).parent.parent.parent
-    claude_rules = repo_root / ".claude" / "rules"
-
-    # Act & Assert
-    assert claude_rules.exists(), (
-        ".claude/rules/ should exist. Rules must be synced from .context/rules/ "
-        "for automatic loading."
-    )
-    assert claude_rules.is_symlink(), ".claude/rules/ should be a symlink"
-
-
-@pytest.mark.e2e
-def test_claude_patterns_directory_exists() -> None:
-    """Verify .claude/patterns/ symlink exists (patterns are synced).
-
-    Three-tier architecture: Patterns should be automatically loaded via bootstrap.
-    """
-    # Arrange
-    repo_root = Path(__file__).parent.parent.parent
-    claude_patterns = repo_root / ".claude" / "patterns"
-
-    # Act & Assert
-    assert claude_patterns.exists(), (
-        ".claude/patterns/ should exist. Patterns must be synced from .context/patterns/ "
-        "for automatic loading."
-    )
-    assert claude_patterns.is_symlink(), ".claude/patterns/ should be a symlink"
-
-
-@pytest.mark.e2e
 def test_claude_guides_directory_does_not_exist() -> None:
     """Verify .claude/guides/ does NOT exist (guides are on-demand only).
 

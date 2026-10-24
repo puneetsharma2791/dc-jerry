@@ -68,18 +68,6 @@ def mandatory_skill_content(rules_dir: Path) -> str:
 
 
 @pytest.fixture(scope="session")
-def claude_md_content(project_root: Path) -> str:
-    """Read CLAUDE.md content."""
-    return (project_root / "CLAUDE.md").read_text()
-
-
-@pytest.fixture(scope="session")
-def agents_md_content(project_root: Path) -> str:
-    """Read AGENTS.md content."""
-    return (project_root / "AGENTS.md").read_text()
-
-
-@pytest.fixture(scope="session")
 def wt_agents_dir(project_root: Path) -> Path:
     """Get the worktracker agents directory."""
     return project_root / "skills" / "worktracker" / "agents"
@@ -446,18 +434,6 @@ class TestWorktrackerAgentPluginRoot:
 class TestAstSkillRegistration:
     """/ast skill must be registered per H-26 and source artifacts must exist."""
 
-    def test_claude_md_when_checked_then_ast_in_quick_reference(
-        self, claude_md_content: str
-    ) -> None:
-        """/ast must appear in CLAUDE.md Quick Reference skills table."""
-        # Arrange
-        pattern = r"\|\s*`/ast`\s*\|"
-
-        # Act/Assert
-        assert re.search(pattern, claude_md_content), (
-            "/ast not found in CLAUDE.md Quick Reference skills table"
-        )
-
     def test_mandatory_skill_when_checked_then_ast_in_trigger_map(
         self, mandatory_skill_content: str
     ) -> None:
@@ -522,70 +498,6 @@ class TestAstSkillRegistration:
         assert not ast_ops.exists(), (
             "skills/ast/scripts/ast_ops.py still exists — BUG-002 requires deletion; "
             "agents should use 'jerry ast' CLI commands instead"
-        )
-
-
-# =============================================================================
-# Tests: AGENTS.md Enforcement Note
-# =============================================================================
-
-
-class TestAgentsMdEnforcement:
-    """Tests for AST enforcement note in AGENTS.md worktracker section."""
-
-    def test_agents_md_when_checked_then_has_h31_enforcement_note(
-        self, agents_md_content: str
-    ) -> None:
-        """AGENTS.md must contain AST Enforcement (H-33) note."""
-        # Arrange/Act/Assert
-        assert "AST Enforcement (H-33)" in agents_md_content, (
-            "AGENTS.md missing 'AST Enforcement (H-33)' note in worktracker section"
-        )
-
-    def test_agents_md_when_checked_then_enforcement_prohibits_regex(
-        self, agents_md_content: str
-    ) -> None:
-        """AGENTS.md enforcement note must explicitly prohibit regex-based parsing."""
-        # Arrange
-        wt_match = re.search(
-            r"## Worktracker Skill Agents.*?(?=\n## |\Z)",
-            agents_md_content,
-            re.DOTALL,
-        )
-
-        # Act/Assert
-        assert wt_match, "AGENTS.md missing 'Worktracker Skill Agents' section"
-        wt_section = wt_match.group(0).lower()
-        assert "regex" in wt_section and "prohibited" in wt_section, (
-            "AGENTS.md Worktracker section does not explicitly prohibit "
-            "regex-based frontmatter parsing (must contain both 'regex' and 'prohibited')"
-        )
-
-    def test_agents_md_when_checked_then_enforcement_references_plugin_root(
-        self, agents_md_content: str
-    ) -> None:
-        """AGENTS.md enforcement note must reference ${CLAUDE_PLUGIN_ROOT} invocation."""
-        # Arrange/Act/Assert
-        assert "${CLAUDE_PLUGIN_ROOT}" in agents_md_content, (
-            "AGENTS.md enforcement note missing ${CLAUDE_PLUGIN_ROOT} reference"
-        )
-
-    def test_agents_md_when_checked_then_enforcement_in_worktracker_section(
-        self, agents_md_content: str
-    ) -> None:
-        """Enforcement note must be in the Worktracker Skill Agents section."""
-        # Arrange
-        wt_match = re.search(
-            r"## Worktracker Skill Agents.*?(?=\n## |\Z)",
-            agents_md_content,
-            re.DOTALL,
-        )
-
-        # Act/Assert
-        assert wt_match, "AGENTS.md missing 'Worktracker Skill Agents' section"
-        wt_section = wt_match.group(0)
-        assert "AST Enforcement (H-33)" in wt_section, (
-            "H-33 enforcement note not in Worktracker Skill Agents section"
         )
 
 

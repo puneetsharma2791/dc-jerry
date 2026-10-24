@@ -93,8 +93,8 @@ class TestValidUnexpiredEntry:
                 package: example-pkg
                 reason: No fix available yet.
                 accepted_by: geekatron
-                accepted_on: 2026-06-01
-                review_by: 2026-08-30
+                accepted_on: 2099-10-15
+                review_by: 2099-12-31
                 ticket: https://github.com/geekatron/jerry/issues/999
         """,
         )
@@ -110,8 +110,8 @@ class TestValidUnexpiredEntry:
                 package: example-pkg
                 reason: No fix available yet.
                 accepted_by: geekatron
-                accepted_on: 2026-06-01
-                review_by: 2026-08-30
+                accepted_on: 2099-10-15
+                review_by: 2099-12-31
                 ticket: https://github.com/geekatron/jerry/issues/999
         """,
         )
@@ -130,8 +130,8 @@ class TestValidUnexpiredEntry:
                 package: some-pkg
                 reason: Mitigation in place.
                 accepted_by: geekatron
-                accepted_on: 2026-06-01
-                review_by: 2026-08-30
+                accepted_on: 2099-10-15
+                review_by: 2099-12-31
                 ticket: https://github.com/geekatron/jerry/issues/999
         """,
         )

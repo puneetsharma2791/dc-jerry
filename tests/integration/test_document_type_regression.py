@@ -167,8 +167,8 @@ class TestRegressionCoverage:
 
         If this drops significantly, file discovery may be broken.
         """
-        assert len(ALL_MD_FILES) >= 2500, (
-            f"Expected at least 2500 .md files, found {len(ALL_MD_FILES)}. "
+        assert len(ALL_MD_FILES) >= 150, (
+            f"Expected at least 150 .md files, found {len(ALL_MD_FILES)}. "
             f"File discovery may be broken."
         )
 

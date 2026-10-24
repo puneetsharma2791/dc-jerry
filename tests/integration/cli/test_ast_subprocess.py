@@ -89,14 +89,7 @@ def env_with_containment_enabled(project_root: Path) -> dict[str, str]:
 def story_file(project_root: Path) -> Path:
     """Path to a real story entity file in the repo."""
     return (
-        project_root
-        / "projects"
-        / "PROJ-005-markdown-ast"
-        / "work"
-        / "EPIC-001-markdown-ast"
-        / "FEAT-001-ast-strategy"
-        / "ST-001-jerry-document"
-        / "ST-001-jerry-document.md"
+        project_root / "tests" / "fixtures" / "ast" / "ST-001-jerry-document.md"
     )
 
 
