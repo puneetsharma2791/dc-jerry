@@ -12,6 +12,8 @@ import shutil
 import subprocess
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parent.parent.parent
 PLUGIN = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text())
 MARKETPLACE = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text())
@@ -50,6 +52,20 @@ def test_cli_reads_a_relative_path_from_another_project_without_warnings(tmp_pat
     assert result.returncode == 0, result.stderr
     assert json.loads(result.stdout)["Type"] == "story"
     assert "Failed to load patterns" not in result.stderr
+
+
+def test_each_skill_description_is_one_line() -> None:
+    """Claude Code drops a skill whose frontmatter description spans lines, even when the
+    multi-line form is valid YAML."""
+    offenders = []
+    for path in sorted(ROOT.glob("skills/*/SKILL.md")):
+        lines = path.read_text().split("\n")
+        [line] = [l for l in lines[1 : lines.index("---", 1)] if l.startswith("description:")]
+        try:
+            yaml.safe_load(line)
+        except yaml.YAMLError:
+            offenders.append(path.parent.name)
+    assert offenders == []
 
 
 def test_skills_are_invoked_under_the_plugin_name() -> None:

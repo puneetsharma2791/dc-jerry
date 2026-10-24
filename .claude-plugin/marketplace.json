@@ -1,6 +1,6 @@
 {
   "name": "dc-jerry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "dc-jerry, a trimmed fork of the Jerry Framework for Claude Code",
   "owner": {
     "name": "Puneet Sharma"
@@ -10,7 +10,7 @@
       "name": "dc-jerry",
       "description": "Jerry work tracking, problem-solving, architecture, NASA systems engineering, orchestration and adversarial review for Claude Code, trimmed to seven skills",
       "source": "./",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "productivity",
       "keywords": [
         "problem-solving",

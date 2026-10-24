@@ -23,8 +23,10 @@ This list is the notice of modification that section 4(b) of the licence require
 below have been changed from geekatron/jerry v0.31.9.
 
 - **Plugin name and manifests:** the plugin and its marketplace are named `dc-jerry`, version
-  0.1.0, listing only the kept agents and `commands/architect.md`:
+  0.1.1, listing only the kept agents and `commands/architect.md`:
   `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`.
+- **Skill frontmatter:** the architecture skill's description is on one line; Claude Code
+  did not load the skill while it spanned two: `skills/architecture/SKILL.md`.
 - **Hooks:** the six upstream hooks, which start `uv` at session start, on every prompt, before
   every tool call, before compaction, after subagents and at stop, are replaced by one
   SessionStart `echo` that names the plugin root and the CLI form: `hooks/hooks.json`. The six

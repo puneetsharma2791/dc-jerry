@@ -1,7 +1,6 @@
 ---
 name: architecture
-description: "This skill should be used when the user asks to \"design system\",
-\"create ADR\", \"review architecture\", or mentions architectural decisions."
+description: "This skill should be used when the user asks to \"design system\", \"create ADR\", \"review architecture\", or mentions architectural decisions."
 version: 1.0.0
 allowed-tools:
   - Read
